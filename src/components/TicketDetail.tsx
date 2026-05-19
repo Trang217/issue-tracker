@@ -29,12 +29,16 @@ export default function TicketDetail({
   return (
     <article className="ticket-detail">
       <div className="detail-item">
-        <p className="label">Description:</p>
+        <p>
+          <strong>Description: </strong>
+        </p>
         <p> {description}</p>
       </div>
 
       <div className="detail-selection">
-        <p className="label">Status:</p>
+        <p>
+          <strong>Status:</strong>
+        </p>
         <select
           name="status"
           id="status"
@@ -48,7 +52,9 @@ export default function TicketDetail({
       </div>
 
       <div className="detail-selection">
-        <p className="label">Priority:</p>
+        <p>
+          <strong>Priority:</strong>
+        </p>
         <select
           name="priority"
           id="priority"
@@ -62,12 +68,16 @@ export default function TicketDetail({
       </div>
 
       <div className="detail-item">
-        <p className="label">Created by:</p>
+        <p>
+          <strong>Created by:</strong>
+        </p>
         <p> {createdBy}</p>
       </div>
 
       <div className="detail-item">
-        <p className="label">Created at:</p>
+        <p>
+          <strong>Created at:</strong>
+        </p>
         <p> {formatedDate}</p>
       </div>
     </article>

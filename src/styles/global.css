@@ -79,7 +79,7 @@ input {
 
 button {
   padding: 14px 20px;
-  border: 1px solid #7b8085;
+  border: 2px solid #dde4f0;
   border-radius: 8px;
   background: #ffffff;
   cursor: pointer;
@@ -123,6 +123,10 @@ button:hover {
   margin-bottom: 8px;
 }
 
+.ticket-toolbar {
+  margin-top: 16px;
+}
+
 .ticket-card {
   padding: 18px;
   border: 1px solid #dde4f0;
@@ -131,6 +135,12 @@ button:hover {
   box-shadow: 0 20px 50px rgb(23 32 51 / 8%);
   margin-bottom: 8px;
   cursor: pointer;
+}
+
+.ticket-action {
+  display: flex;
+  justify-content: flex-end;
+  margin: 16px 0;
 }
 
 .selected-ticket {
@@ -142,6 +152,7 @@ button:hover {
 
 .ticket-filter {
   display: flex;
+  justify-content: space-around;
   align-items: center;
   margin-bottom: 16px;
   gap: 16px;
@@ -239,6 +250,6 @@ form h2 {
 
 .form-element label {
   width: 20%;
-  font-weight: 600;
+  font-weight: 800;
   color: #374151;
 }

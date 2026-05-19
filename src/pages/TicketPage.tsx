@@ -57,10 +57,12 @@ export function TicketPage() {
         <h1>Mini Issue Tracker</h1>
       </section>
 
-      <section>
-        <button onClick={() => setIsTicketModalOpen(true)}>
-          Create New Ticket
-        </button>
+      <section className="ticket-toolbar">
+        <div className="ticket-action">
+          <button onClick={() => setIsTicketModalOpen(true)}>
+            Create New Ticket
+          </button>
+        </div>
         <TicketFilter
           status={selectedStatus}
           priority={selectedPriority}
