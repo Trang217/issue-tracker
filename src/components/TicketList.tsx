@@ -1,4 +1,4 @@
-import { Ticket } from "../types/ticket";
+import type { Ticket } from "../types/ticket";
 import TicketCard from "./TicketCard";
 
 interface TicketListProps {

@@ -1,4 +1,4 @@
-import { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
+import type { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
 
 interface TicketDetailProps {
   ticket: Ticket;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Ticket } from "../types/ticket";
+import type { Ticket } from "../types/ticket";
 
 type TicketFormData = Omit<Ticket, "id" | "createdAt">;
 interface TicketFormProps {

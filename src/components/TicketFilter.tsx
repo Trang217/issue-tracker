@@ -1,5 +1,5 @@
 import React from "react";
-import { SortOption, TicketPriority, TicketStatus } from "../types/ticket";
+import type { SortOption, TicketPriority, TicketStatus } from "../types/ticket";
 
 interface TicketFilterProps {
   status: TicketStatus | "all";

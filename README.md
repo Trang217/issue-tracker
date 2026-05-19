@@ -22,7 +22,8 @@ A ticket has the following fields:
 2. Show a list of all tickets.
 3. Add filters for status and priority.
 4. Add a text search for title and creator.
-5. Show a details view when a ticket is selected.
+5. Show a details view w
+   hen a ticket is selected.
 6. Allow changing the ticket status in the details view.
 7. Add a form for creating a new ticket.
 8. Validate at least the ticket title.
@@ -100,3 +101,25 @@ src/
 ## Notes for candidates
 
 You may change the structure if you think there is a better approach. Please keep the solution simple and explain relevant decisions in this README.
+
+## Implementation Decisions & Trade-offs
+
+### Local Storage
+
+In order to keep the project simple, I chose to store tickets in `localStorage` rather than using a database or backend. Because the data is only stored locally in the browser, it is imposible to share tickets between users or devices. In a larger application, I would use backend and database solution.
+
+### useTicket custom hook
+
+As the project grew, the ticket logic inside the page component started becoming too crowded. To keep the component cleaner, I moved the ticket logic into `useTickets` hook. It handles creating new ticket, updating ticket detail, `localStorage` updating.
+
+### Filtering & Sorting
+
+Filtering and sorting feature was moved into a separate utility function in order to keep the page component cleaner and easier to maintain.
+
+### Modal Component
+
+The ticket creation form is displayed inside a reusable `Modal` component.
+
+### Ticket ID Generation
+
+Currently, ticket IDs are generated based on the ticket length. I think this approach can become risky because IDs could potentially be duplicated if tickets are deleted or data changes unexpectedly. I would use UUIDs instead to guarantee unique ticket.
