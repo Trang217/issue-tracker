@@ -5,6 +5,9 @@ import TicketFilter from "../components/TicketFilter";
 import type { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
 import { filterTickets } from "../lib/filterTickets";
 import TicketDetail from "../components/TicketDetail";
+import Modal from "../components/Modal";
+import TicketForm from "../components/TicketForm";
+type TicketFormData = Omit<Ticket, "id" | "createdAt">;
 
 export function TicketPage() {
   const [tickets, setTickets] = useState<Ticket[]>(seedTickets);
@@ -16,6 +19,7 @@ export function TicketPage() {
   >("all");
   const [search, setSearch] = useState("");
   const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);
+  const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
 
   const displayedTickets = filterTickets(tickets, {
     search,
@@ -43,6 +47,23 @@ export function TicketPage() {
     );
   }
 
+  function handleCloseTicketModal() {
+    setIsTicketModalOpen(false);
+  }
+
+  function createNewTicket(data: TicketFormData) {
+    const newTicketId: string = `Ticket-${tickets.length + 1}`;
+    const newTicket: Ticket = {
+      ...data,
+      id: newTicketId,
+      createdAt: new Date().toISOString(),
+    };
+
+    setTickets((currenTickets) => [...currenTickets, newTicket]);
+    setSelectedTicketId(newTicketId);
+    setIsTicketModalOpen(false);
+  }
+
   return (
     <main className="app-shell">
       <section className="hero-card">
@@ -51,6 +72,9 @@ export function TicketPage() {
       </section>
 
       <section>
+        <button onClick={() => setIsTicketModalOpen(true)}>
+          Create New Ticket
+        </button>
         <TicketFilter
           status={selectedStatus}
           priority={selectedPriority}
@@ -81,6 +105,14 @@ export function TicketPage() {
           </div>
         )}
       </section>
+      {isTicketModalOpen && (
+        <Modal>
+          <TicketForm
+            onCloseTicketForm={handleCloseTicketModal}
+            onCreateNewTicket={createNewTicket}
+          />
+        </Modal>
+      )}
     </main>
   );
 }
