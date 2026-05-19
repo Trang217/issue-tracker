@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { seedTickets } from "../data/seedTickets";
 import { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
 
+const STORAGE_TICKETS = "tickets";
 type TicketFormData = Omit<Ticket, "id" | "createdAt">;
 export default function useTickets() {
-  const [tickets, setTickets] = useState<Ticket[]>(seedTickets);
+  const [tickets, setTickets] = useState<Ticket[]>(() => {
+    const savedTickets = localStorage.getItem(STORAGE_TICKETS);
+    return savedTickets ? (JSON.parse(savedTickets) as Ticket[]) : seedTickets;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_TICKETS, JSON.stringify(tickets));
+  }, [tickets]);
 
   function createTicket(data: TicketFormData) {
     const newTicketId: string = `Ticket-${tickets.length + 1}`;
