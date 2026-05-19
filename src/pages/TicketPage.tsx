@@ -1,16 +1,16 @@
 import { useState } from "react";
 import TicketList from "../components/TicketList";
-import { seedTickets } from "../data/seedTickets";
 import TicketFilter from "../components/TicketFilter";
 import type { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
 import { filterTickets } from "../lib/filterTickets";
 import TicketDetail from "../components/TicketDetail";
 import Modal from "../components/Modal";
 import TicketForm from "../components/TicketForm";
+import useTickets from "../hooks/useTickets";
+
 type TicketFormData = Omit<Ticket, "id" | "createdAt">;
 
 export function TicketPage() {
-  const [tickets, setTickets] = useState<Ticket[]>(seedTickets);
   const [selectedStatus, setSelectedStatus] = useState<TicketStatus | "all">(
     "all",
   );
@@ -20,6 +20,8 @@ export function TicketPage() {
   const [search, setSearch] = useState("");
   const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);
   const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
+  const { tickets, createTicket, updateTicketPriority, updateTicketStatus } =
+    useTickets();
 
   const displayedTickets = filterTickets(tickets, {
     search,
@@ -31,36 +33,13 @@ export function TicketPage() {
     (ticket) => ticket.id === selectedTicketId,
   );
 
-  function updateTicketStatus(ticketId: string, status: TicketStatus) {
-    setTickets((currentTickets) =>
-      currentTickets.map((ticket) =>
-        ticket.id === ticketId ? { ...ticket, status } : ticket,
-      ),
-    );
-  }
-
-  function updateTicketPriority(ticketId: string, priority: TicketPriority) {
-    setTickets((currentTickets) =>
-      currentTickets.map((ticket) =>
-        ticket.id === ticketId ? { ...ticket, priority } : ticket,
-      ),
-    );
-  }
-
   function handleCloseTicketModal() {
     setIsTicketModalOpen(false);
   }
 
   function createNewTicket(data: TicketFormData) {
-    const newTicketId: string = `Ticket-${tickets.length + 1}`;
-    const newTicket: Ticket = {
-      ...data,
-      id: newTicketId,
-      createdAt: new Date().toISOString(),
-    };
-
-    setTickets((currenTickets) => [...currenTickets, newTicket]);
-    setSelectedTicketId(newTicketId);
+    const newTicket = createTicket(data);
+    setSelectedTicketId(newTicket.id);
     setIsTicketModalOpen(false);
   }
 
