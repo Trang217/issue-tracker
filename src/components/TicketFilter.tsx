@@ -1,19 +1,23 @@
 import React from "react";
-import { TicketPriority, TicketStatus } from "../types/ticket";
+import { SortOption, TicketPriority, TicketStatus } from "../types/ticket";
 
 interface TicketFilterProps {
   status: TicketStatus | "all";
   priority: TicketPriority | "all";
   search: string;
+  sortBy: SortOption;
   onStatusFilterChange: (status: TicketStatus | "all") => void;
   onPriorityFilterChange: (priority: TicketPriority | "all") => void;
   onSearchChange: (search: string) => void;
+  onSortChange: (sortBy: SortOption) => void;
 }
 
 export default function TicketFilter({
   status,
   priority,
   search,
+  sortBy,
+  onSortChange,
   onStatusFilterChange,
   onPriorityFilterChange,
   onSearchChange,
@@ -24,6 +28,10 @@ export default function TicketFilter({
 
   function handlePriorityChange(event: React.ChangeEvent<HTMLSelectElement>) {
     onPriorityFilterChange(event.target.value as TicketPriority | "all");
+  }
+
+  function handleSortChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    onSortChange(event.target.value as SortOption);
   }
 
   function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -67,6 +75,21 @@ export default function TicketFilter({
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>
+        </select>
+      </div>
+
+      <div className="ticket-filter-group">
+        <label htmlFor="status">Sort by:</label>
+        <select
+          name="sortBy"
+          id="sortBy"
+          value={sortBy}
+          onChange={handleSortChange}
+        >
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="higher-priority">Higher Priority</option>
+          <option value="lower-priority">Lower Priority</option>
         </select>
       </div>
     </div>

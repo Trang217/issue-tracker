@@ -1,6 +1,6 @@
-export type TicketStatus = 'open' | 'in_progress' | 'done';
+export type TicketStatus = "open" | "in_progress" | "done";
 
-export type TicketPriority = 'low' | 'medium' | 'high';
+export type TicketPriority = "low" | "medium" | "high";
 
 export interface Ticket {
   id: string;
@@ -11,3 +11,9 @@ export interface Ticket {
   createdBy: string;
   createdAt: string;
 }
+
+export type SortOption =
+  | "newest"
+  | "oldest"
+  | "higher-priority"
+  | "lower-priority";

@@ -1,7 +1,12 @@
 import { useState } from "react";
 import TicketList from "../components/TicketList";
 import TicketFilter from "../components/TicketFilter";
-import type { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
+import {
+  SortOption,
+  type Ticket,
+  type TicketPriority,
+  type TicketStatus,
+} from "../types/ticket";
 import { filterTickets } from "../lib/filterTickets";
 import TicketDetail from "../components/TicketDetail";
 import Modal from "../components/Modal";
@@ -20,6 +25,7 @@ export function TicketPage() {
   const [search, setSearch] = useState("");
   const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);
   const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
+  const [sortBy, setSortBy] = useState<SortOption>("newest");
   const { tickets, createTicket, updateTicketPriority, updateTicketStatus } =
     useTickets();
 
@@ -27,6 +33,7 @@ export function TicketPage() {
     search,
     status: selectedStatus,
     priority: selectedPriority,
+    sortBy,
   });
 
   const selectedTicket = displayedTickets.find(
@@ -61,6 +68,8 @@ export function TicketPage() {
           onStatusFilterChange={setSelectedStatus}
           onPriorityFilterChange={setSelectedPriority}
           onSearchChange={setSearch}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
         />
       </section>
 

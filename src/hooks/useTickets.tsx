@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { seedTickets } from "../data/seedTickets";
-import { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
+import type { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
 
 const STORAGE_TICKETS = "tickets";
 type TicketFormData = Omit<Ticket, "id" | "createdAt">;
@@ -22,7 +22,7 @@ export default function useTickets() {
       createdAt: new Date().toISOString(),
     };
 
-    setTickets((currenTickets) => [...currenTickets, newTicket]);
+    setTickets((currentTickets) => [...currentTickets, newTicket]);
 
     return newTicket;
   }
