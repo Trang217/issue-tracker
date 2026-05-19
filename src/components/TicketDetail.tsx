@@ -13,6 +13,11 @@ export default function TicketDetail({
 }: TicketDetailProps) {
   const { description, createdBy, createdAt, status, priority } = ticket;
 
+  const formatedDate = new Date(createdAt).toLocaleString("de-DE", {
+    dateStyle: "medium",
+    timeStyle: "medium",
+  });
+
   function handleStatusUpdate(event: React.ChangeEvent<HTMLSelectElement>) {
     onStatusChange(ticket.id, event.target.value as TicketStatus);
   }
@@ -63,7 +68,7 @@ export default function TicketDetail({
 
       <div className="detail-item">
         <p className="label">Created at:</p>
-        <p> {createdAt}</p>
+        <p> {formatedDate}</p>
       </div>
     </article>
   );
