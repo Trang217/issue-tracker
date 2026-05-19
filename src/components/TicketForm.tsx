@@ -19,6 +19,7 @@ export default function TicketForm({
   onCreateNewTicket,
 }: TicketFormProps) {
   const [formData, setFormData] = useState<TicketFormData>(initialFormData);
+  const [titleError, setTitleError] = useState("");
   const { title, description, createdBy, status, priority } = formData;
 
   function handleChange(
@@ -26,17 +27,28 @@ export default function TicketForm({
   ) {
     setFormData((currentFormData) => {
       const { name, value } = event.target;
+
+      if (name === title) {
+        setTitleError("");
+      }
+
       return { ...currentFormData, [name]: value };
     });
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!title) {
+      setTitleError("Title is missing!");
+      return;
+    }
     onCreateNewTicket(formData);
   }
   return (
     <form onSubmit={handleSubmit}>
       <h2>Create Ticket</h2>
+      {titleError && <p className="error-text">{titleError}</p>}
       <div className="form-element">
         <label htmlFor="title">Title:</label>
         <input
