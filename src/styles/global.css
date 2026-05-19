@@ -306,3 +306,8 @@ form h2 {
   color: #172033;
   box-shadow: 0 4px 12px rgb(15 23 42 / 4%);
 }
+
+.form-element .error-input {
+  border-color: #ff0000;
+  background: #fff5f5;
+}

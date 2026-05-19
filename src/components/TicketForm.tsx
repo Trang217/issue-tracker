@@ -30,7 +30,7 @@ export default function TicketForm({
     setFormData((currentFormData) => {
       const { name, value } = event.target;
 
-      if (name === title) {
+      if (name === "title") {
         setTitleError("");
       }
 
@@ -63,6 +63,7 @@ export default function TicketForm({
           id="title"
           value={title}
           onChange={handleChange}
+          className={`${titleError ? "error-input" : ""}`}
         />
       </div>
 
