@@ -13,8 +13,10 @@ export function TicketPage() {
   const [selectedPriority, setSelectedPriority] = useState<
     TicketPriority | "all"
   >("all");
+  const [search, setSearch] = useState("");
 
   const displayedTickets = filterTickets(tickets, {
+    search,
     status: selectedStatus,
     priority: selectedPriority,
   });
@@ -30,8 +32,10 @@ export function TicketPage() {
         <TicketFilter
           status={selectedStatus}
           priority={selectedPriority}
+          search={search}
           onStatusFilterChange={setSelectedStatus}
           onPriorityFilterChange={setSelectedPriority}
+          onSearchChange={setSearch}
         />
       </section>
 

@@ -68,6 +68,15 @@ p {
   line-height: 1.6;
 }
 
+input {
+  min-width: 240px;
+  padding: 10px 14px;
+  border: 1px solid #dde4f0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  outline: 1px solid #dde4f0;
+}
+
 .ticket-card {
   padding: 18px;
   border: 1px solid #dde4f0;

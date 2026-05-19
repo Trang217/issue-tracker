@@ -4,15 +4,19 @@ import { TicketPriority, TicketStatus } from "../types/ticket";
 interface TicketFilterProps {
   status: TicketStatus | "all";
   priority: TicketPriority | "all";
+  search: string;
   onStatusFilterChange: (status: TicketStatus | "all") => void;
   onPriorityFilterChange: (priority: TicketPriority | "all") => void;
+  onSearchChange: (search: string) => void;
 }
 
 export default function TicketFilter({
   status,
   priority,
+  search,
   onStatusFilterChange,
   onPriorityFilterChange,
+  onSearchChange,
 }: TicketFilterProps) {
   function handleStatusChange(event: React.ChangeEvent<HTMLSelectElement>) {
     onStatusFilterChange(event.target.value as TicketStatus | "all");
@@ -22,8 +26,20 @@ export default function TicketFilter({
     onPriorityFilterChange(event.target.value as TicketPriority | "all");
   }
 
+  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
+    onSearchChange(event.target.value);
+  }
+
   return (
     <div className="ticket-filter">
+      <div>
+        <input
+          type="text"
+          placeholder="Searching ticket..."
+          value={search}
+          onChange={handleSearchChange}
+        />
+      </div>
       <div className="ticket-filter-group">
         <label htmlFor="status">Status:</label>
         <select
