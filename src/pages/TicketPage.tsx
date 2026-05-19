@@ -1,3 +1,6 @@
+import TicketList from "../components/TicketList";
+import { seedTickets } from "../data/seedTickets";
+
 export function TicketPage() {
   return (
     <main className="app-shell">
@@ -6,7 +9,9 @@ export function TicketPage() {
         <h1>Mini Issue Tracker</h1>
       </section>
 
-      <section></section>
+      <section className="tickets-layout">
+        <TicketList tickets={seedTickets} />
+      </section>
     </main>
   );
 }
