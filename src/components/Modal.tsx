@@ -5,5 +5,9 @@ interface ModalProps {
 }
 
 export default function Modal({ children }: ModalProps) {
-  return <div>{children}</div>;
+  return (
+    <div className="modal-wrapper">
+      <div className="modal-content"> {children}</div>
+    </div>
+  );
 }

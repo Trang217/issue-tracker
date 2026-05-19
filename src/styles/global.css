@@ -77,6 +77,29 @@ input {
   outline: 1px solid #dde4f0;
 }
 
+button {
+  padding: 14px 20px;
+  border: 1px solid #7b8085;
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease-out;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
 .ticket-layout {
   display: flex;
   justify-content: space-between;
@@ -125,7 +148,8 @@ input {
 }
 
 .ticket-filter-group select,
-.detail-selection select {
+.detail-selection select,
+.form-element select {
   min-width: 150px;
   padding: 8px;
   border: 1px solid #dde4f0;
@@ -151,4 +175,63 @@ input {
 .detail-selection {
   display: flex;
   gap: 6px;
+}
+
+/* Modal */
+
+.modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.modal-content {
+  width: min(80%, 100%);
+  width: min(560px, 100%);
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+}
+
+/* Form */
+
+form {
+  margin: 0 auto;
+  padding: 56px 48px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+form input {
+  flex: 1;
+  background: transparent;
+  min-width: 240px;
+  padding: 10px 14px;
+  border: 1px solid #dde4f0;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+form h2 {
+  margin: 0 auto;
+}
+
+.form-element {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.form-element label {
+  width: 20%;
+  font-weight: 600;
+  color: #374151;
 }

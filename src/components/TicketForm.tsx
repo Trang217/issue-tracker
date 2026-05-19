@@ -55,6 +55,7 @@ export default function TicketForm({
           name="description"
           id="description"
           value={description}
+          onChange={handleChange}
         />
       </div>
 
