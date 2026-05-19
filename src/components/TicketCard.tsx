@@ -18,7 +18,7 @@ export default function TicketCard({
       className={`ticket-card ${selectedTicketId === ticket.id ? "selected-ticket" : ""}`}
       onClick={handleSelectionChange}
     >
-      <p>{ticket.title}</p>
+      <p className="ticket-card-title">{ticket.title}</p>
     </article>
   );
 }

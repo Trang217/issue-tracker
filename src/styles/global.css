@@ -128,13 +128,27 @@ button:hover {
 }
 
 .ticket-card {
-  padding: 18px;
+  padding: 18px 20px;
   border: 1px solid #dde4f0;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 20px 50px rgb(23 32 51 / 8%);
-  margin-bottom: 8px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 10px 30px rgb(15 23 42 / 6%);
+  margin-bottom: 12px;
   cursor: pointer;
+}
+
+.ticket-card:hover {
+  border-color: #c7d0dd;
+  box-shadow: 0 10px 22px rgb(15 23 42 / 8%);
+  background: #fcfcfd;
+}
+
+.ticket-card-title {
+  margin: 0;
+  color: #52627a;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 .ticket-action {
@@ -144,8 +158,9 @@ button:hover {
 }
 
 .selected-ticket {
-  border: 1px solid #dde4f0;
-  background-color: #eff6ff;
+  border-color: #9aa7b8;
+  background: #f1f5f9;
+  box-shadow: 0 18px 38px rgb(15 23 42 / 7%);
 }
 
 /* TicketFilter */
@@ -169,30 +184,56 @@ button:hover {
 .detail-selection select,
 .form-element select {
   min-width: 150px;
-  padding: 8px;
-  border: 1px solid #dde4f0;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #d6dee8;
+  border-radius: 10px;
   background-color: #ffffff;
+  color: #172033;
   cursor: pointer;
-  outline: 1px solid #dde4f0;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  box-shadow: 0 2px 6px rgb(15 23 42 / 4%);
 }
 
 /* TicketDetail */
 .ticket-detail {
-  padding: 16px;
-  border-radius: 8px;
+  padding: 20px;
+  border-radius: 16px;
   border: 1px solid #dde4f0;
-  background-color: #f9fafb;
+  background: #f9fafb;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 16px rgb(15 23 42 / 5%);
 }
 
 .detail-item,
 .detail-selection {
   display: flex;
   gap: 6px;
+}
+
+.detail-item strong,
+.detail-selection strong {
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.detail-selection select {
+  min-width: 120px;
+  width: fit-content;
+  padding: 6px 10px;
+  font-size: 0.875rem;
+}
+
+.detail-item p:last-child {
+  font-size: 1rem;
+  color: #52627a;
+  line-height: 1.5;
 }
 
 /* Modal */
@@ -209,8 +250,7 @@ button:hover {
 }
 
 .modal-content {
-  width: min(80%, 100%);
-  width: min(560px, 100%);
+  width: min(720px, 100%);
   overflow-y: auto;
   background-color: white;
   border-radius: 8px;
@@ -239,7 +279,7 @@ form input {
 }
 
 form h2 {
-  margin: 0 auto;
+  margin: 8px auto;
 }
 
 .form-element {
@@ -252,4 +292,17 @@ form h2 {
   width: 20%;
   font-weight: 800;
   color: #374151;
+}
+
+.form-element textarea {
+  flex: 1;
+  min-width: 240px;
+  min-height: 120px;
+  padding: 14px 16px;
+  border: 1px solid #d6dee8;
+  outline: 1px solid #d6dee8;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #172033;
+  box-shadow: 0 4px 12px rgb(15 23 42 / 4%);
 }

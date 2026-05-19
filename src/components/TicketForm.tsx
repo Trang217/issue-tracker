@@ -23,7 +23,9 @@ export default function TicketForm({
   const { title, description, createdBy, status, priority } = formData;
 
   function handleChange(
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) {
     setFormData((currentFormData) => {
       const { name, value } = event.target;
@@ -66,12 +68,12 @@ export default function TicketForm({
 
       <div className="form-element">
         <label htmlFor="description">Description:</label>
-        <input
-          type="text"
+        <textarea
           name="description"
           id="description"
           value={description}
           onChange={handleChange}
+          rows={3}
         />
       </div>
 
