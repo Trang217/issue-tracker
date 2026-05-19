@@ -77,6 +77,22 @@ input {
   outline: 1px solid #dde4f0;
 }
 
+.ticket-layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ticket-container {
+  width: 50%;
+  padding: 18px;
+  border: 1px solid #dde4f0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 20px 50px rgb(23 32 51 / 8%);
+  margin-bottom: 8px;
+}
+
 .ticket-card {
   padding: 18px;
   border: 1px solid #dde4f0;
@@ -84,6 +100,12 @@ input {
   background: #ffffff;
   box-shadow: 0 20px 50px rgb(23 32 51 / 8%);
   margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.selected-ticket {
+  border: 1px solid #dde4f0;
+  background-color: #eff6ff;
 }
 
 /* TicketFilter */
@@ -102,7 +124,8 @@ input {
   gap: 6px;
 }
 
-.ticket-filter-group select {
+.ticket-filter-group select,
+.detail-selection select {
   min-width: 150px;
   padding: 8px;
   border: 1px solid #dde4f0;
@@ -110,4 +133,22 @@ input {
   background-color: #ffffff;
   cursor: pointer;
   outline: 1px solid #dde4f0;
+}
+
+/* TicketDetail */
+.ticket-detail {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #dde4f0;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.detail-item,
+.detail-selection {
+  display: flex;
+  gap: 6px;
 }

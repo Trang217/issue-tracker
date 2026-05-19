@@ -4,6 +4,7 @@ import { seedTickets } from "../data/seedTickets";
 import TicketFilter from "../components/TicketFilter";
 import type { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
 import { filterTickets } from "../lib/filterTickets";
+import TicketDetail from "../components/TicketDetail";
 
 export function TicketPage() {
   const [tickets, setTickets] = useState<Ticket[]>(seedTickets);
@@ -14,12 +15,17 @@ export function TicketPage() {
     TicketPriority | "all"
   >("all");
   const [search, setSearch] = useState("");
+  const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);
 
   const displayedTickets = filterTickets(tickets, {
     search,
     status: selectedStatus,
     priority: selectedPriority,
   });
+
+  const selectedTicket = displayedTickets.find(
+    (ticket) => ticket.id === selectedTicketId,
+  );
 
   return (
     <main className="app-shell">
@@ -39,8 +45,21 @@ export function TicketPage() {
         />
       </section>
 
-      <section className="tickets-layout">
-        <TicketList tickets={displayedTickets} />
+      <section className="ticket-layout">
+        <TicketList
+          tickets={displayedTickets}
+          selectedTicketId={selectedTicketId}
+          onSelectedTicket={setSelectedTicketId}
+        />
+        {displayedTickets.length > 0 && (
+          <div className="ticket-container">
+            {selectedTicket ? (
+              <TicketDetail ticket={selectedTicket} />
+            ) : (
+              <p>Select Ticket for more Details</p>
+            )}
+          </div>
+        )}
       </section>
     </main>
   );
