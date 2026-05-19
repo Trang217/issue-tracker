@@ -6,7 +6,7 @@ interface ModalProps {
 
 export default function Modal({ children }: ModalProps) {
   return (
-    <div className="modal-wrapper">
+    <div className="modal-wrapper" role="dialog" aria-modal={true}>
       <div className="modal-content"> {children}</div>
     </div>
   );

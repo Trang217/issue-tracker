@@ -22,7 +22,7 @@ export default function TicketDetail({
   }
 
   return (
-    <article>
+    <article className="ticket-detail">
       <div className="detail-item">
         <p className="label">Description:</p>
         <p> {description}</p>

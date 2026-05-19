@@ -48,7 +48,11 @@ export default function TicketForm({
   return (
     <form onSubmit={handleSubmit}>
       <h2>Create Ticket</h2>
-      {titleError && <p className="error-text">{titleError}</p>}
+      {titleError && (
+        <p className="error-text" role="alert">
+          {titleError}
+        </p>
+      )}
       <div className="form-element">
         <label htmlFor="title">Title:</label>
         <input
@@ -112,7 +116,9 @@ export default function TicketForm({
 
       <div className="button-group">
         <button type="submit">Create</button>
-        <button onClick={onCloseTicketForm}>Cancel</button>
+        <button type="button" onClick={onCloseTicketForm}>
+          Cancel
+        </button>
       </div>
     </form>
   );
