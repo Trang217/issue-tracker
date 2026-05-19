@@ -1,15 +1,25 @@
-import { Ticket } from "../types/ticket";
+import { Ticket, TicketPriority, TicketStatus } from "../types/ticket";
 
 interface TicketDetailProps {
   ticket: Ticket;
+  onStatusChange: (ticketId: string, status: TicketStatus) => void;
+  onPriorityChange: (ticketId: string, priority: TicketPriority) => void;
 }
 
-export default function TicketDetail({ ticket }: TicketDetailProps) {
+export default function TicketDetail({
+  ticket,
+  onStatusChange,
+  onPriorityChange,
+}: TicketDetailProps) {
   const { description, createdBy, createdAt, status, priority } = ticket;
 
-  function handleStatusUpdate() {}
+  function handleStatusUpdate(event: React.ChangeEvent<HTMLSelectElement>) {
+    onStatusChange(ticket.id, event.target.value as TicketStatus);
+  }
 
-  function handlePriorityUpdate() {}
+  function handlePriorityUpdate(event: React.ChangeEvent<HTMLSelectElement>) {
+    onPriorityChange(ticket.id, event.target.value as TicketPriority);
+  }
 
   return (
     <article>

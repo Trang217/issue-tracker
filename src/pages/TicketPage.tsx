@@ -27,6 +27,22 @@ export function TicketPage() {
     (ticket) => ticket.id === selectedTicketId,
   );
 
+  function updateTicketStatus(ticketId: string, status: TicketStatus) {
+    setTickets((currentTickets) =>
+      currentTickets.map((ticket) =>
+        ticket.id === ticketId ? { ...ticket, status } : ticket,
+      ),
+    );
+  }
+
+  function updateTicketPriority(ticketId: string, priority: TicketPriority) {
+    setTickets((currentTickets) =>
+      currentTickets.map((ticket) =>
+        ticket.id === ticketId ? { ...ticket, priority } : ticket,
+      ),
+    );
+  }
+
   return (
     <main className="app-shell">
       <section className="hero-card">
@@ -54,7 +70,11 @@ export function TicketPage() {
         {displayedTickets.length > 0 && (
           <div className="ticket-container">
             {selectedTicket ? (
-              <TicketDetail ticket={selectedTicket} />
+              <TicketDetail
+                ticket={selectedTicket}
+                onStatusChange={updateTicketStatus}
+                onPriorityChange={updateTicketPriority}
+              />
             ) : (
               <p>Select Ticket for more Details</p>
             )}
