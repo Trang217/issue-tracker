@@ -1,10 +1,16 @@
 import { useState } from "react";
 import type { Ticket } from "../types/ticket";
+import TicketInput from "./TicketInput";
 
-type TicketFormData = Omit<Ticket, "id" | "createdAt">;
+type TicketFormData = Omit<
+  Ticket,
+  "id" | "createdAt"
+>;
 interface TicketFormProps {
   onCloseTicketForm: () => void;
-  onCreateNewTicket: (formData: TicketFormData) => void;
+  onCreateNewTicket: (
+    formData: TicketFormData,
+  ) => void;
 }
 const initialFormData: TicketFormData = {
   title: "",
@@ -18,13 +24,23 @@ export default function TicketForm({
   onCloseTicketForm,
   onCreateNewTicket,
 }: TicketFormProps) {
-  const [formData, setFormData] = useState<TicketFormData>(initialFormData);
-  const [titleError, setTitleError] = useState("");
-  const { title, description, createdBy, status, priority } = formData;
+  const [formData, setFormData] =
+    useState<TicketFormData>(initialFormData);
+  const [titleError, setTitleError] =
+    useState("");
+  const {
+    title,
+    description,
+    createdBy,
+    status,
+    priority,
+  } = formData;
 
   function handleChange(
     event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      | HTMLInputElement
+      | HTMLTextAreaElement
+      | HTMLSelectElement
     >,
   ) {
     setFormData((currentFormData) => {
@@ -34,11 +50,16 @@ export default function TicketForm({
         setTitleError("");
       }
 
-      return { ...currentFormData, [name]: value };
+      return {
+        ...currentFormData,
+        [name]: value,
+      };
     });
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(
+    event: React.FormEvent<HTMLFormElement>,
+  ) {
     event.preventDefault();
 
     if (!title) {
@@ -56,41 +77,41 @@ export default function TicketForm({
         </p>
       )}
       <div className="form-element">
-        <label htmlFor="title">Title:</label>
-        <input
+        <TicketInput
+          label="Title"
           type="text"
           name="title"
-          id="title"
-          value={title}
-          onChange={handleChange}
-          className={`${titleError ? "error-input" : ""}`}
+          error={titleError}
+          inputValue={title}
+          onInputChange={handleChange}
         />
       </div>
 
       <div className="form-element">
-        <label htmlFor="description">Description:</label>
-        <textarea
+        <TicketInput
+          as="textarea"
+          label="Description"
           name="description"
-          id="description"
-          value={description}
-          onChange={handleChange}
-          rows={3}
+          inputValue={description}
+          onInputChange={handleChange}
+          row={3}
         />
       </div>
 
       <div className="form-element">
-        <label htmlFor="createdBy">Created by:</label>
-        <input
+        <TicketInput
+          label="Created by"
           type="text"
           name="createdBy"
-          id="createdBy"
-          value={createdBy}
-          onChange={handleChange}
+          inputValue={createdBy}
+          onInputChange={handleChange}
         />
       </div>
 
       <div className="form-element">
-        <label htmlFor="priority">Priority:</label>
+        <label htmlFor="priority">
+          Priority:
+        </label>
         <select
           name="priority"
           id="priority"
@@ -112,14 +133,19 @@ export default function TicketForm({
           onChange={handleChange}
         >
           <option value="open">Open</option>
-          <option value="in_progress">In Progress</option>
+          <option value="in_progress">
+            In Progress
+          </option>
           <option value="done">Done</option>
         </select>
       </div>
 
       <div className="button-group">
         <button type="submit">Create</button>
-        <button type="button" onClick={onCloseTicketForm}>
+        <button
+          type="button"
+          onClick={onCloseTicketForm}
+        >
           Cancel
         </button>
       </div>

@@ -1,6 +1,7 @@
 node_modules
 dist
 coverage
+.prettierrc
 .env
 .DS_Store
 *.log

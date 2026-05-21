@@ -1,12 +1,7 @@
 import { useState } from "react";
 import TicketList from "../components/TicketList";
 import TicketFilter from "../components/TicketFilter";
-import {
-  SortOption,
-  type Ticket,
-  type TicketPriority,
-  type TicketStatus,
-} from "../types/ticket";
+import { SortOption, type Ticket, type TicketPriority, type TicketStatus } from "../types/ticket";
 import { filterTickets } from "../lib/filterTickets";
 import TicketDetail from "../components/TicketDetail";
 import Modal from "../components/Modal";
@@ -16,18 +11,13 @@ import useTickets from "../hooks/useTickets";
 type TicketFormData = Omit<Ticket, "id" | "createdAt">;
 
 export function TicketPage() {
-  const [selectedStatus, setSelectedStatus] = useState<TicketStatus | "all">(
-    "all",
-  );
-  const [selectedPriority, setSelectedPriority] = useState<
-    TicketPriority | "all"
-  >("all");
+  const [selectedStatus, setSelectedStatus] = useState<TicketStatus | "all">("all");
+  const [selectedPriority, setSelectedPriority] = useState<TicketPriority | "all">("all");
   const [search, setSearch] = useState("");
   const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);
   const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>("newest");
-  const { tickets, createTicket, updateTicketPriority, updateTicketStatus } =
-    useTickets();
+  const { tickets, createTicket, updateTicketPriority, updateTicketStatus } = useTickets();
 
   const displayedTickets = filterTickets(tickets, {
     search,
@@ -36,9 +26,7 @@ export function TicketPage() {
     sortBy,
   });
 
-  const selectedTicket = displayedTickets.find(
-    (ticket) => ticket.id === selectedTicketId,
-  );
+  const selectedTicket = displayedTickets.find((ticket) => ticket.id === selectedTicketId);
 
   function handleCloseTicketModal() {
     setIsTicketModalOpen(false);
@@ -59,9 +47,7 @@ export function TicketPage() {
 
       <section className="ticket-toolbar">
         <div className="ticket-action">
-          <button onClick={() => setIsTicketModalOpen(true)}>
-            Create New Ticket
-          </button>
+          <button onClick={() => setIsTicketModalOpen(true)}>Create New Ticket</button>
         </div>
         <TicketFilter
           status={selectedStatus}

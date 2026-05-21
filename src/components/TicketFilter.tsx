@@ -1,13 +1,22 @@
 import React from "react";
-import type { SortOption, TicketPriority, TicketStatus } from "../types/ticket";
+import type {
+  SortOption,
+  TicketPriority,
+  TicketStatus,
+} from "../types/ticket";
+import TicketInput from "./TicketInput";
 
 interface TicketFilterProps {
   status: TicketStatus | "all";
   priority: TicketPriority | "all";
   search: string;
   sortBy: SortOption;
-  onStatusFilterChange: (status: TicketStatus | "all") => void;
-  onPriorityFilterChange: (priority: TicketPriority | "all") => void;
+  onStatusFilterChange: (
+    status: TicketStatus | "all",
+  ) => void;
+  onPriorityFilterChange: (
+    priority: TicketPriority | "all",
+  ) => void;
   onSearchChange: (search: string) => void;
   onSortChange: (sortBy: SortOption) => void;
 }
@@ -22,30 +31,48 @@ export default function TicketFilter({
   onPriorityFilterChange,
   onSearchChange,
 }: TicketFilterProps) {
-  function handleStatusChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    onStatusFilterChange(event.target.value as TicketStatus | "all");
+  function handleStatusChange(
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) {
+    onStatusFilterChange(
+      event.target.value as TicketStatus | "all",
+    );
   }
 
-  function handlePriorityChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    onPriorityFilterChange(event.target.value as TicketPriority | "all");
+  function handlePriorityChange(
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) {
+    onPriorityFilterChange(
+      event.target.value as
+        | TicketPriority
+        | "all",
+    );
   }
 
-  function handleSortChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    onSortChange(event.target.value as SortOption);
+  function handleSortChange(
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) {
+    onSortChange(
+      event.target.value as SortOption,
+    );
   }
 
-  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleSearchChange(
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >,
+  ) {
     onSearchChange(event.target.value);
   }
 
   return (
     <div className="ticket-filter">
       <div>
-        <input
+        <TicketInput
           type="text"
           placeholder="Searching ticket..."
-          value={search}
-          onChange={handleSearchChange}
+          inputValue={search}
+          onInputChange={handleSearchChange}
         />
       </div>
       <div className="ticket-filter-group">
@@ -58,7 +85,9 @@ export default function TicketFilter({
         >
           <option value="all">All</option>
           <option value="open">Open</option>
-          <option value="in_progress">In Progress</option>
+          <option value="in_progress">
+            In Progress
+          </option>
           <option value="done">Done</option>
         </select>
       </div>
@@ -88,8 +117,12 @@ export default function TicketFilter({
         >
           <option value="newest">Newest</option>
           <option value="oldest">Oldest</option>
-          <option value="higher-priority">Higher Priority</option>
-          <option value="lower-priority">Lower Priority</option>
+          <option value="higher-priority">
+            Higher Priority
+          </option>
+          <option value="lower-priority">
+            Lower Priority
+          </option>
         </select>
       </div>
     </div>
