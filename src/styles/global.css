@@ -107,6 +107,13 @@ button:hover {
   margin-bottom: 6px;
 }
 
+.search-result-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0;
+  margin: 8px 0;
+}
+
 .ticket-layout {
   display: flex;
   justify-content: space-between;
@@ -131,7 +138,11 @@ button:hover {
   padding: 18px 20px;
   border: 1px solid #dde4f0;
   border-radius: 16px;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f8fafc 100%
+  );
   box-shadow: 0 10px 30px rgb(15 23 42 / 6%);
   margin-bottom: 12px;
   cursor: pointer;

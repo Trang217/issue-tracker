@@ -22,8 +22,7 @@ A ticket has the following fields:
 2. Show a list of all tickets.
 3. Add filters for status and priority.
 4. Add a text search for title and creator.
-5. Show a details view w
-   hen a ticket is selected.
+5. Show a details view when a ticket is selected.
 6. Allow changing the ticket status in the details view.
 7. Add a form for creating a new ticket.
 8. Validate at least the ticket title.
